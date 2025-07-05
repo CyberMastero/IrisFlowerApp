@@ -3,13 +3,31 @@ from sklearn.ensemble import RandomForestClassifier as RF
 from sklearn.neural_network import MLPClassifier
 
 class SVMClassifier:
-    def get_best_model(self, X, y):
-        return SVC(probability=True, kernel='rbf', C=1, gamma='scale')
+    def __init__(self):
+        self.model = SVC()
+
+    def train(self, X, y):
+        self.model.fit(X, y)
+
+    def predict(self, X):
+        return self.model.predict(X)
 
 class RandomForestClassifier:
-    def get_best_model(self, X, y):
-        return RF(n_estimators=100, max_depth=3, random_state=42)
+    def __init__(self):
+        self.model = RF()
+
+    def train(self, X, y):
+        self.model.fit(X, y)
+
+    def predict(self, X):
+        return self.model.predict(X)
 
 class NeuralNetworkClassifier:
-    def get_best_model(self, X, y):
-        return MLPClassifier(hidden_layer_sizes=(50,), max_iter=1000, random_state=42)
+    def __init__(self):
+        self.model = MLPClassifier(max_iter=1000)
+
+    def train(self, X, y):
+        self.model.fit(X, y)
+
+    def predict(self, X):
+        return self.model.predict(X)
